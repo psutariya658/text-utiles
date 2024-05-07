@@ -1,25 +1,18 @@
-/* eslint-disable no-unused-vars */
-import logo from './logo.svg';
-import { useState } from 'react';
-import './App.css';//style mate app.css vali file use ker vani
-import About from './components/About';
+import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
+import About from './components/About';
+import React, { useState } from 'react';
 import Alert from './components/Alert';
-import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 
-
 function App() {
-  // wether dark mode is enabled or not
-  const [darkMode, setDarkMode] = useState('light');
-  //alert
+  const [mode, setMode] = useState('light'); // Whether dark mode is enabled or not
   const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type) => {
@@ -32,47 +25,32 @@ function App() {
     }, 1500);
   }
 
-  const switchMode = () => {
-    if (darkMode === 'light') {
-      setDarkMode('dark');
-      document.body.style.backgroundColor = '#90a7ab';
-      showAlert("Light mode has been changed to dark", "success");
-    } else {
-      setDarkMode('light');
-      document.body.style.backgroundColor = 'ghostwhite';
-      showAlert("Dark mode has been changed to light", "success");
+  const toggleMode = () => {
+    if (mode === 'light') {
+      setMode('dark');
+      document.body.style.backgroundColor = '#042743';
+      showAlert("Dark mode has been enabled", "success");
+    }
+    else {
+      setMode('light');
+      document.body.style.backgroundColor = 'white';
+      showAlert("Light mode has been enabled", "success");
     }
   }
-
   return (
-
-    //router satthe connect ker va mate
-    <Router>
-      <div className="container">
-        {/* navbar import keri lidhu */}
-        <Navbar title="TextUtils" toggleMode={switchMode} about="About Us" mode={darkMode} />
-        {/* alert formate */}
+    <>
+      <Router>
+        <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} key={new Date()} />
         <Alert alert={alert} />
-
-        <Routes>
-          {/* about formate */}
-          <Route exact path="/about" element={<About mode={darkMode} />} />
-
-          <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={darkMode} />} />
-        </Routes>
-      </div>
-    </Router>
-    
-    // simple layout
-    //  <div className="container">
-    // <Navbar title="TextUtils" toggleMode={switchMode} about="About Us" mode={darkMode} />
-    // <TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={darkMode} />
-    // </div> 
+        <div className="container my-3">
+          <Routes>
+            <Route exact path="/about" element={<About mode={mode} />} />
+            <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Try TextUtils - word counter, character counter, remove extra spaces" mode={mode} />} />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 }
 
-
 export default App;
-
-
-
