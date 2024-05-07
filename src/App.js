@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import { useState } from 'react';
 import './App.css';//style mate app.css vali file use ker vani
 import About from './components/About';
@@ -35,40 +35,39 @@ function App() {
   const switchMode = () => {
     if (darkMode === 'light') {
       setDarkMode('dark');
-      document.body.style.backgroundColor = 'blue';
+      document.body.style.backgroundColor = '#90a7ab';
       showAlert("Light mode has been changed to dark", "success");
-      document.title = "Text Utilities - Dark Mode";
     } else {
       setDarkMode('light');
       document.body.style.backgroundColor = 'ghostwhite';
       showAlert("Dark mode has been changed to light", "success");
-      document.title = "Text Utilities - Light Mode";
     }
   }
 
   return (
 
     //router satthe connect ker va mate
-    // <Router>
-    //   <div className="container">
-    //     {/* navbar import keri lidhu */}
-    //     <Navbar title="TextUtils" toggleMode={switchMode} about="About Us" mode={darkMode} />
-    //     {/* alert formate */}
-    //     <Alert alert={alert} />
+    <Router>
+      <div className="container">
+        {/* navbar import keri lidhu */}
+        <Navbar title="TextUtils" toggleMode={switchMode} about="About Us" mode={darkMode} />
+        {/* alert formate */}
+        <Alert alert={alert} />
 
-    //     <Routes>
-    //       {/* about formate */}
-    //       <Route exact path="/about" element={<About />} />
+        <Routes>
+          {/* about formate */}
+          <Route exact path="/about" element={<About mode={darkMode} />} />
 
-    //       <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={darkMode} />} />
-    //     </Routes>
-    //   </div>
-    // </Router>
-
-    <div className="container">
-      <Navbar title="TextUtils" toggleMode={switchMode} about="About Us" mode={darkMode} />
-      <TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={darkMode} />
-    </div>
+          <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={darkMode} />} />
+        </Routes>
+      </div>
+    </Router>
+    
+    // simple layout
+    //  <div className="container">
+    // <Navbar title="TextUtils" toggleMode={switchMode} about="About Us" mode={darkMode} />
+    // <TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={darkMode} />
+    // </div> 
   );
 }
 

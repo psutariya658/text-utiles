@@ -1,53 +1,34 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function About() {
+export default function About(props) {
 
     //  making object for the style as in react
-    // let color = {
+    // let mycolor = {
     //     color: "red",
     //     background: "black"
     // };
 
     //dark mode
-    const [mycolor, setColor] = useState({
-        color: "white",
-        background: "black"
-    })
-    // for the button of the dark mode
-    const [mybutton, mybuttoncolor] = useState("Enable dark mode");
-
-    const themestyle = () => {
-        if (mycolor.color === "black") {
-            setColor({
-
-                color: "white",
-                background: "black",
-                border:"0.5px solid white"
-            })
-            mybuttoncolor("Enable light mode");
-
-        }
-        else {
-
-            setColor({
-
-                color: "black",
-                background: "white"
-            })
-            mybuttoncolor("Enable dark mode");
-
-        }
+    const mycolor = {
+        color: props.mode ==='dark'?'white':'#042743',
+        backgroundColor: props.mode ==='dark'?'rgb(36 74 104)':'white', 
     }
+    // for the button of the dark mod
+
+
 
     return (
-        <>  
+        <>
 
             {/* making object for the style as in react */}
-            <div></div>
-            <div className='container-about' style={mycolor}>
+            <div>
+            <h1 className="my-3" style={{color: props.mode ==='dark'?'white':'#042743'}}>About Us</h1>
+
+
+            </div>
+            <div className='container-about' style={props.mycolor}>
 
                 {/* <div className='container-about'> */}
-                <h1>About Us</h1>
 
                 <div className="accordion accordion-flush" id="accordionFlushExample" style={mycolor}>
                     <div className="accordion-item" style={mycolor}>
@@ -81,12 +62,6 @@ export default function About() {
                         </div>
                     </div>
                 </div>
-
-
-                <div className="center">
-                    <button type='button' className="btn-third" onClick={themestyle} >{mybutton}</button>
-                </div>
-
             </div>
         </>
     )

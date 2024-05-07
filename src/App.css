@@ -79,11 +79,17 @@ background-color: rgb(250, 237, 237);
 } */
 
 /* case button */
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+/* about button */
+#aboutbutton{
+  margin-top: 10px;
 }
+
 .letter {
   margin-left: 20px;
   margin-right: 20px;
@@ -108,5 +114,8 @@ background-color: rgb(250, 237, 237);
 }
 
 .letter:hover {
-  box-shadow: 0 0 10px 4px #eaedf0;
+  box-shadow: 0 0 10px 4px #eaeff0;
+}
+.accordion-button::after {
+  filter: invert(1);
 }

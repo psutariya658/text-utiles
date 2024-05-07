@@ -44,7 +44,7 @@ export default function TextForm(props) {
 
             <div className="container my-2" style={{color: props.mode === "light" ? "black" : "white"}} >
                 <h1>Your text summary</h1>
-                <p> ={'>'} Your number of the words is <strong>{text.split(' ').length}</strong> <br></br> ={'>'}  Number of the charachter is <strong>{text.length}</strong></p>
+                <p> ={'>'} Your number of the words is <strong>{text.split(/\s+/).filter((element) => {return element.length !== 0}).length}</strong> <br></br> ={'>'}  Number of the charachter is <strong>{text.length}</strong></p>
                 <p><strong>{0.008 * text.split(' ').length}</strong> Time to take a word(in Minutes)</p>
             </div>
         </>
